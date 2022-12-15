@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:21:23 by ychibani          #+#    #+#             */
-/*   Updated: 2022/12/12 15:21:34 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:42:36 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ class Phonebook
 	public:
 			Phonebook(void);
 			~Phonebook();
-	int			search ( void );
+	void		search ( void );
 	void		add ( void );
 	void		welcome ( void );
-
+	void		exit( void );
 	private:
-			Contact	__phone_book[MAX_CONTACT_ALLOWED];
+			void		set_contact(int index);
 			int		__index;
+			Contact	__phone_book[MAX_CONTACT_ALLOWED];
 			int		__contact_added;
 			
 			void	__print_line(std::string, std::string, std::string, std::string);
