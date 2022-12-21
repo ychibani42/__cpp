@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:39:58 by ychibani          #+#    #+#             */
-/*   Updated: 2022/12/15 12:54:59 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:16:44 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(void)
 	Phonebook	Phonebook;
 
 	Phonebook.welcome();
-	// Phonebook.addUser();
 	while (true)
 	{
 		std::cout << "PhoneBook > ";
@@ -32,7 +31,7 @@ int	main(void)
 		else if (str == "SEARCH")
 			Phonebook.search();
 		else
-			std::cout << "I don't like to repeat but, pls put ADD, SEARCH or EXIT" << std::endl;
+			std::cout << "pls put ADD, SEARCH or EXIT" << std::endl;
 	}
 	return (__SUCCESS);
 }

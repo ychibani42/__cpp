@@ -13,8 +13,6 @@
 #include "includes.hpp"
 #include "phonebook.hpp"
 #include "contact.hpp"
-#include <sstream>
-#include <string>
 
 Phonebook::Phonebook( void ) : __index(0), __contact_added(0){
 	return ;
@@ -94,27 +92,39 @@ void	Phonebook::__print_line(std::string index, std::string s1, std::string s2, 
 
 void	Phonebook::search( void )
 {
-	std::string buffer;
+	std::string 		buffer;
 	std::ostringstream	integer;
+	std::string 		string_index;
+	int					searching_index;
 	
 	const int	max = ((this->__contact_added > MAX_CONTACT_ALLOWED) ? MAX_CONTACT_ALLOWED : this->__contact_added);
-
 	__print_line("index", "first_name", "last_name", "nickname");
 	for(int i = 0; i < max; i++)
 	{
 		integer << i;
 		__print_line(integer.str(), this->__phone_book[i].__get_name(), this->__phone_book[i].__get_last_name(), this->__phone_book[i].__get_nickname());
+		integer.str("");
 	}
-	integer.clear();
 	while (true)
 	{
-		std::cout << "Index >";
+		std::cout << "Index >	";
 		std::getline(std::cin, buffer);
 		if (std::cin.eof() || !buffer.compare(QUIT))
 			break ;
 		else
 		{
-			std::cout << std::stringstream(buffer) << std::endl	;
+			std::istringstream(buffer) >> searching_index;
+			if (searching_index < 0 || searching_index > 7)
+				std::cout << "Invalid Value <0-7>" << std::endl;
+			else if (searching_index < std::min(MAX_CONTACT_ALLOWED, __contact_added))
+			{
+				std::cout << "First Name : " << this->__phone_book[searching_index].__get_name() << std::endl;
+				std::cout << "Last Name : " << this->__phone_book[searching_index].__get_last_name() << std::endl;
+				std::cout << "Phone number : " << this->__phone_book[searching_index].__get_phonenumber() << std::endl;
+				std::cout << "Darkest Secret : " << this->__phone_book[searching_index].__get_darkest_secret() << std::endl;
+			}
+			else
+				std::cout << "Wrong Input or Contact not found" << std::endl;
 		}
 			
 	}
