@@ -5,17 +5,17 @@
 # define    __FAILURE 0
 
 # include <iostream>
+# include <cmath>
 
 class   Fixed
 {
     public :
         Fixed(void);
-        Fixed(Fixed &t);
-        Fixed(const int);
-        Fixed(const float);
+        Fixed(const	Fixed &t);
+        Fixed(int const);
+        Fixed(float const);
         ~Fixed(void);
-        Fixed		&operator=(const Fixed &newFixed);
-        std::ofstream		&operator<<(const Fixed &newFixed);
+        Fixed				&operator=(const Fixed &newFixed);
         int			getRawBits( void ) const;
         void		setRawBits( int const raw );
 		float		toFloat( void ) const;
@@ -25,5 +25,7 @@ class   Fixed
         static const int	__fract_part = 8;
         int					__fixed_value;
 };
+
+std::ostream		&operator<<(std::ostream &os, const Fixed &newFixed);
 
 #endif
