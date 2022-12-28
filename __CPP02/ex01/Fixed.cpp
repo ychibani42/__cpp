@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/27 13:29:07 by ychibani          #+#    #+#             */
+/*   Updated: 2022/12/27 13:45:07 by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 
 Fixed::Fixed(void) : __fixed_value(0)
 {
-    std::cout << "Default Construtor Called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed(void)
 {
-    std::cout << "Destructor Called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &t)
 {
-    std::cout << "Copy Constructor Called" << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
     *this = t;
 }
 
@@ -30,7 +42,7 @@ Fixed::Fixed(const int i) : __fixed_value(i * (1 << Fixed::__fract_part))
 
 Fixed::Fixed(const float f) : __fixed_value((int)roundf(f * (1 << Fixed::__fract_part)))
 {
-    std::cout << "Float contructor called" << std::endl;
+    std::cout << "Float constructor called" << std::endl;
 }
 
 int Fixed::getRawBits( void ) const

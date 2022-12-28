@@ -2,18 +2,18 @@
 
 Fixed::Fixed(void) : __fixed_value(0)
 {
-    std::cout << "Default Construtor Called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed(void)
 {
-    std::cout << "Destructor Called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(Fixed &t)
 {
-    std::cout << "Copy Constructor Called" << std::endl;
-    this->__fixed_value = t.getRawBits();
+    std::cout << "Copy constructor called" << std::endl;
+	*this = t;
 }
 
 int Fixed::getRawBits( void ) const
