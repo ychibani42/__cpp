@@ -1,10 +1,10 @@
-NAME 		= 		my_sed
+NAME 		= 		ClapTrap
 
 SRCS_DIR	=		./
 
 INCS_DIR	=		.
 
-SRCS_FILES 	= 		main.cpp\
+SRCS_FILES 	= 		main.cpp ClapTrap.cpp\
 
 SRCS		=		$(addprefix ${SRCS_DIR},${SRCS_FILES})
 
@@ -12,7 +12,7 @@ INCS 		= 		-I $(INCS_DIR)
 
 CC 			=		c++
 
-CPPFLAGS 	= 		-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CPPFLAGS 	= 		-Wall -Wextra -Werror -std=c++98
 
 OBJS 		= 		${SRCS:.cpp=.o}
 

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 17:46:38 by ychibani          #+#    #+#             */
-/*   Updated: 2022/12/30 15:47:28 by ychibani         ###   ########.fr       */
+/*   Created: 2022/12/31 18:22:43 by ychibani          #+#    #+#             */
+/*   Updated: 2022/12/31 18:22:46 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FAILURE
-# define __FAILURE	1
-#endif
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-#ifndef __SUCCESS
-# define __SUCCESS	1
-#endif
+#include "ClapTrap.hpp"
 
+class ScavTrap : public ClapTrap
+{
+	public: 
+		ScavTrap (void);
+		ScavTrap (const ScavTrap&);
+		ScavTrap (const std::string&);
+		~ScavTrap (void);
 
-#ifndef __INCLUDES_HPP__
-# define __INCLUDES_HPP__
+		ScavTrap& 	operator=(const ScavTrap&);
 
-# include <iostream>
-# include <cstring>
-# include <string>
-# include <fstream>
-# include <sys/stat.h>
+		void		guardGate (void);
+		void		attack (const std::string&);
+};
 
 #endif

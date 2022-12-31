@@ -1,0 +1,58 @@
+### TESTING CLAPTRAP ###
+
+[34mConstructing[0m
+[copy constructor]
+[copy constructor]
+[34mTesting[0m
+Claptrap Barnar attacks some other robot, causing 10 points of damage !
+Barnar died in atrocious suffering
+can't attack a dead body..
+Barnar died in atrocious suffering
+ClapTrap Barnar has been repaired of 5 hit points!
+Barnar: Is dead !..
+ClapTrap Arnaud has been repaired of 3 hit points!
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Claptrap Arnaud attacks Cody-clone, causing 10 points of damage !
+Arnaud: Don't have Energy
+ClapTrap Arnaud has been repaired of 3 hit points!
+[34mDeconstructing[0m
+[destructor called]
+[destructor called]
+
+### TESTING CLAPTRAP ###
+
+Constructing
+ClapTrap string constructor called
+ClapTrap string constructor called
+Testing
+Claptrap Barnar attacks some other robot, causing 0 points of damage!
+ClapTrap Barnar just lost the life!
+ClapTrap Barnar cannot take damage because it is dead!
+ClapTrap Barnar cannot be repaired because it is dead!
+ClapTrap Barnar is dead!
+ClapTrap Arnaud has been repaired of 3 hit points!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+Claptrap Arnaud attacks Cody-clone, causing 0 points of damage!
+ClapTrap Arnaud is out of energy!
+ClapTrap Arnaud is out of energy!
+ClapTrap Arnaud is out of energy!
+Deconstructing
+ClapTrap default destructor called
+ClapTrap default destructor called
