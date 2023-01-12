@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 09:51:11 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/03 10:35:07 by ychibani         ###   ########.fr       */
+/*   Created: 2023/01/03 11:00:09 by ychibani          #+#    #+#             */
+/*   Updated: 2023/01/05 14:48:24 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FRAGTRAP_HPP__
-# define __FRAGTRAP_HPP__
 
-#include "ClapTrap.hpp"
+#ifndef __CAT_CLASS_HPP__
+# define __CAT_CLASS_HPP__
 
-class FragTrap : public ClapTrap
+#include "includes.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
+
+class Cat : public Animal
 {
-	public: 
-		FragTrap (void);
-		FragTrap (const FragTrap&);
-		FragTrap (const std::string&);
-		~FragTrap (void);
+	public :
+		Cat(void);
+		Cat(Cat &); 
+		Cat	&operator=(const Cat &);
+		virtual ~Cat();
+		void		makeSound() const ;
+		void		set_idea(int index, std::string new_idea);
+		std::string get_idea(int index);
 
-		FragTrap& 	operator=(const FragTrap&);
-
-		void		attack (const std::string&);
-		void		highFivesGuys(void);
+	private :
+		Brain *_Brain;
 };
 
 #endif

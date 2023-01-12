@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 17:54:51 by ychibani          #+#    #+#             */
-/*   Updated: 2022/12/31 20:56:22 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/03 09:44:25 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &to_assign)
 	*this = to_assign;
 	return (*this);
 }
-
 
 void ScavTrap::guardGate()
 {

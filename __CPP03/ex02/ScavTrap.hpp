@@ -6,12 +6,12 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 18:22:43 by ychibani          #+#    #+#             */
-/*   Updated: 2022/12/31 18:22:46 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/03 09:52:06 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef __SCAVTRAP_HPP__
+# define __SCAVTRAP_HPP__
 
 #include "ClapTrap.hpp"
 

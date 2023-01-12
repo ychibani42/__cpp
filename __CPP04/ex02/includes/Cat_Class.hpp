@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat_Class.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 09:51:11 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/03 10:35:07 by ychibani         ###   ########.fr       */
+/*   Created: 2023/01/03 11:00:09 by ychibani          #+#    #+#             */
+/*   Updated: 2023/01/03 18:19:12 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FRAGTRAP_HPP__
-# define __FRAGTRAP_HPP__
+#ifndef __CAT_CLASS_HPP__
+# define __CAT_CLASS_HPP__
 
-#include "ClapTrap.hpp"
+#include "includes.hpp"
+#include "Animal_class.hpp"
 
-class FragTrap : public ClapTrap
+class Cat : public Animal
 {
-	public: 
-		FragTrap (void);
-		FragTrap (const FragTrap&);
-		FragTrap (const std::string&);
-		~FragTrap (void);
-
-		FragTrap& 	operator=(const FragTrap&);
-
-		void		attack (const std::string&);
-		void		highFivesGuys(void);
+	public :
+		Cat(void);
+		Cat(Cat &); 
+		Cat	&operator=(const Cat &);
+		virtual ~Cat();
+		virtual void	makeSound() const;
 };
 
 #endif

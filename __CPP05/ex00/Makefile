@@ -1,26 +1,26 @@
-NAME 		= 		ClapTrap
+NAME 		:= 		Bureaucrat
 
-SRCS_DIR	=		./
+SRCS_DIR	:=		./
 
-INCS_DIR	=		.
+INCS_DIR	:=		.
 
-SRCS_FILES 	= 		main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp\
+SRCS_FILES 	:= 		main.cpp Bureaucrat.cpp\
 
-SRCS		=		$(addprefix ${SRCS_DIR},${SRCS_FILES})
+SRCS		:=		$(addprefix ${SRCS_DIR},${SRCS_FILES})
 
-INCS 		= 		-I $(INCS_DIR)
+INCS 		:= 		-I $(INCS_DIR)
 
-CC 			=		c++
+CC 			:=		c++
 
-CPPFLAGS 	= 		-Wall -Wextra -Werror -std=c++98
+CPPFLAGS 	:= 		-Wall -Wextra -Werror -std=c++98
 
-OBJS 		= 		${SRCS:.cpp=.o}
+OBJS 		:= 		${SRCS:.cpp=.o}
 
-DEPS 		= 		${SRCS:.cpp=.d}
+DEPS 		:= 		${SRCS:.cpp=.d}
 
-RM 			=		rm -f
+RM 			:=		rm -f
 
-SYSTEM		=		${shell uname}
+SYSTEM		:=		${shell uname}
 
 
 ifeq (${SYSTEM}, Darwin)
@@ -54,7 +54,7 @@ all:		${NAME}
 
 .cpp.o:
 				@printf "%-10s ${_YELLOW}${_BOLD}$<${_END}...\n" "Compiling"
-				@${CC} ${CPPFLAGS} ${INCS} -c -MMD $< -o $@ ${INCS}
+				@${CC} ${CPPFLAGS} ${INCS} -c -MMD -MP $< -o $@ ${INCS}
 
 ${NAME}:	${OBJS}
 				@printf "%-10s ${_PURPLE}${_BOLD}${NAME}${_END}...\n" "Compiling"
