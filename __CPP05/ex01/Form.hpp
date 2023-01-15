@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:31:48 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/12 15:07:59 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:49:58 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define __SIGNED	1
 # define __UNSIGNED	-1
+
+class Bureaucrat;
 
 class Form
 {
@@ -36,22 +38,12 @@ class Form
 		{
 			public :
 				virtual const char *what() const throw();
-	};
+		};
 	const std::string	&getName(void);
 	unsigned	int		get_min_rqrd_sgnd_grd() const;
 	unsigned	int		get_min_rqrd_xct_grd() const;
-	bool				is_signed() const;
+	bool				get_is_signed() const;
 	void				beSigned(Bureaucrat &bureaucrat);
-	class GradeTooHighException : public std::exception
-	{
-		public :
-			virtual const char *what() const throw();
-	};
-	class GradeTooLowException : public std::exception
-	{
-		public :
-			virtual const char *what() const throw();
-	};
 	private :
 		const std::string	__name;
 		bool				__is_signed;

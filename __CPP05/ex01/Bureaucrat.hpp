@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:50:37 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/12 14:28:45 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:49:30 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define __BUREAUCRAT_HPP__
 
 # include <iostream>
+# include "Form.hpp"
 
 # define __SUCCESS 1
 # define __FAILURE 0
+
+class Form;
 
 class Bureaucrat
 {
@@ -30,9 +33,10 @@ class Bureaucrat
 		const std::string	&get_name(void);
 		void		set_name(const std::string &name);
 		void		set_rank(int rank);
-		int			get_rank(void);
+		unsigned int			get_rank(void);
 		void		promotion();
 		void		derank();
+		void		signForm(Form &form);
 	class GradeTooHighException : public std::exception
 	{
 		public :
@@ -45,7 +49,7 @@ class Bureaucrat
 	};
 	private :
 		const std::string	__name;
-		int			__grade;
+		unsigned int			__grade;
 };
 
 std::ostream &operator<<(std::ostream &, Bureaucrat &);

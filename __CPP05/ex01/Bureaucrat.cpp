@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:57:00 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/12 14:30:25 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/15 13:47:13 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ void Bureaucrat::promotion()
 	this->__grade -= 1;
 }
 
+void	Bureaucrat::signForm(Form &form)
+{
+	try 
+	{
+		form.beSigned(*this);
+		std::cout << this->__name << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->__name << " cannot sign " << form.getName() << " because" << e.what() << std::endl;
+	}	
+}
+
 void Bureaucrat::derank()
 {
 	if (this->__grade + 1 > 150)
@@ -50,9 +63,9 @@ void Bureaucrat::derank()
 	this->__grade += 1;
 }
 
-void		Bureaucrat::set_rank(int rank) {this->__grade = rank;};
-const 		std::string &Bureaucrat::get_name(void) {return (this->__name);}
-int			Bureaucrat::get_rank(void) {return (this->__grade);}
+void					Bureaucrat::set_rank(int rank) {this->__grade = rank;};
+const 		std::string	&Bureaucrat::get_name(void) {return (this->__name);}
+unsigned int			Bureaucrat::get_rank(void) {return (this->__grade);}
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bureau)
 {
