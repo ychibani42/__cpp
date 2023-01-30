@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:50:37 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/13 14:49:30 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:37:04 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class Bureaucrat
 			virtual const char *what() const throw();
 	};
 	private :
-		const std::string	__name;
+		const std::string		__name;
 		unsigned int			__grade;
 };
 

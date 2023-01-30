@@ -4,7 +4,7 @@ SRCS_DIR	:=		./
 
 INCS_DIR	:=		.
 
-SRCS_FILES 	:= 		main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp\
+SRCS_FILES 	:= 		main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp\
 
 SRCS		:=		$(addprefix ${SRCS_DIR},${SRCS_FILES})
 

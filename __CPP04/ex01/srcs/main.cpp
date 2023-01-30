@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:59:55 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 15:11:07 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:37:30 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ int	main(void)
 	cat->set_idea(67, s1);
 	cat->set_idea(33, s2);
 	cat->set_idea(-123, s2);
+
+
+	Cat basic;
+	{
+		Cat tmp = basic;
+	}
 
 	std::cout << "Idea n.2 is " << cat->get_idea(2) << std::endl;
 	std::cout << "Idea n.67 is " << cat->get_idea(67) << std::endl;

@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 13:08:55 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 14:27:22 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:38:35 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,29 @@
 
 Animal::Animal(void)
 {
-	if (DEBUG)
-		std::cout << "[Animal constructor called]" << std::endl;
-
+	std::cout << "[Animal constructor called]" << std::endl;
 }
 
 Animal::~Animal(void)
 {
-	if (DEBUG)
-		std::cout << "[Animal destructor called]" << std::endl;
+	std::cout << "[Animal destructor called]" << std::endl;
 }
 
 Animal::Animal(const std::string &animal) : type(animal)
 {
-	if (DEBUG)
-		std::cout << "[Animal string constructor called]" << std::endl;
+	std::cout << "[Animal string constructor called]" << std::endl;
 }
 
 Animal::Animal(const Animal &cpy)
 {
-	if (DEBUG)
-		std::cout << "[Animal copy constructor called]" << std::endl;
+	std::cout << "[Animal copy constructor called]" << std::endl;
 	*this = cpy;
 }
 
 Animal &Animal::operator=(const Animal &to_assign)
 {
 	this->type = to_assign.type;
-	if (DEBUG)
-		std::cout << "[Dog assignement operator overload called]" << std::endl;
+	std::cout << "[Dog assignement operator overload called]" << std::endl;
 	return (*this);
 }
 
@@ -59,4 +53,17 @@ std::string Animal::getType(void) const
 void	Animal::makeSound(void) const
 {
 	std::cout << "Unknown Animal make's sound" << std::endl;
+}
+
+std::string Animal::get_idea(int index)
+{
+	(void)index;
+	return ("Unknown Animal has no idea");
+}
+
+void Animal::set_idea(int index, std::string idea)
+{
+	std::cout << "Unknown Animal has no idea" << std::endl;
+	(void)index;
+	(void)idea;
 }

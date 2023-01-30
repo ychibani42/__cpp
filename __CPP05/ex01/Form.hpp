@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:31:48 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/13 14:49:58 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:08:09 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define __SIGNED	1
 # define __UNSIGNED	-1
+# define DEBUG		0
 
 class Bureaucrat;
 

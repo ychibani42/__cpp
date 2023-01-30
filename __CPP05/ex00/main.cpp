@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:50:17 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/10 13:15:23 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:09:39 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	main(void)
 	std::cout << std::endl;
 	std::cout << "------------ Test invalid contructor value ------------" << std::endl;
 	std::cout << std::endl;
-
 	try
 	{
 		Bureaucrat		uncle("uncle", 1000);

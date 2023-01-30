@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:59:55 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 15:11:07 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:48:57 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(void)
 	Animal* cat = new Cat();
 	std::string s1 = "miouaaa";
 	std::string s2 = "grrrrrr";
-
 	/*
 	**	Animal* newAnimal = new Animal();
 	**	newAnimal->set_idea(2, s2);

@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:57:00 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/12 14:28:36 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:41:26 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void Bureaucrat::derank()
 	std::cout << "Ouch ! you got deranked !" << std::endl;
 	this->__grade += 1;
 }
-
 
 void		Bureaucrat::set_rank(int rank) {this->__grade = rank;};
 const 		std::string &Bureaucrat::get_name(void) {return (this->__name);}

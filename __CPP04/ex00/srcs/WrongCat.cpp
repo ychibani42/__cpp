@@ -22,7 +22,7 @@ WrongCat::~WrongCat(void)
 	std::cout << "[WrongCat destructor called]" << std::endl;
 }
 
-WrongCat::WrongCat(WrongCat &to_assign)
+WrongCat::WrongCat(const WrongCat &to_assign)
 {
 	std::cout << "[WrongCat copy constructor called]" << std::endl;
 	*this = to_assign;

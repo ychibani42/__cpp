@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 13:07:16 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 14:24:30 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:47:57 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Cat::~Cat(void)
 Cat::Cat(Cat &to_assign)
 {
 	std::cout << "[Cat copy constructor called]" << std::endl;
+	this->_Brain = new Brain();
 	*this = to_assign;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:31:48 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/15 17:48:24 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:35:32 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Form
 			public :
 				virtual const char *what() const throw();
 		};
-	const std::string	&getName(void);
+	const std::string	&getName(void) const;
 	unsigned	int		get_min_rqrd_sgnd_grd() const;
 	unsigned	int		get_min_rqrd_xct_grd() const;
 	bool				get_is_signed() const;

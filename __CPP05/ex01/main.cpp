@@ -6,9 +6,10 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:50:17 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/13 14:37:47hibani         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:42:16 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -83,21 +84,27 @@ int     main(void)
         std::cout << std::endl;
 
         std::cout << std::endl;
-        std::cout << "------------ Test too low to sign ------------" << std::endl;
-        std::cout << std::endl;
         try
         {
                 Bureaucrat              goodGuy("good guy", 31);
                 Form                    plantTree("plant tree", false, 30, 40);
 
                 std::cout << goodGuy << std::endl;
+       			std::cout << std::endl;
                 goodGuy.signForm(plantTree);
+       			std::cout << std::endl;
                 goodGuy.promotion();
+       			std::cout << std::endl;
                 std::cout << goodGuy << std::endl;
+       			std::cout << std::endl;
                 goodGuy.signForm(plantTree);
+       			std::cout << std::endl;
                 std::cout << plantTree << std::endl;
                 yassine.signForm(plantTree);
-                std::cout << plantTree << std::endl;
+       			std::cout << std::endl;
+				plantTree.beSigned(yassine);
+       			std::cout << std::endl;
+       			std::cout << std::endl;
         }
         catch (std::exception const & e)
         {

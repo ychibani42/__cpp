@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:57:00 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/15 13:47:13 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:33:25 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	Bureaucrat::signForm(Form &form)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << this->__name << " cannot sign " << form.getName() << " because" << e.what() << std::endl;
+		std::cout << this->__name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
 	}	
 }
 

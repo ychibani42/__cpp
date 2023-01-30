@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:31:46 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/15 15:48:12 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:24:47 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ Form::Form(const Form &cpy) : __rqrd_sgnd_grd(cpy.__rqrd_sgnd_grd), __rqrd_xct_g
 
 Form::Form(const std::string name, bool is_signed, unsigned int rqrd_sgnd_grd, unsigned int rqrd_xct_grd) : __name(name), __rqrd_sgnd_grd(rqrd_sgnd_grd), __rqrd_xct_grd(rqrd_xct_grd)
 {
-	std::cout << "[Form complete constructor called]" << std::endl;
 	if (rqrd_sgnd_grd < 1 || rqrd_xct_grd < 1)
 		throw (Form::GradeTooHighException());
 	else if (rqrd_sgnd_grd > 150 || rqrd_xct_grd > 150)
@@ -31,7 +30,6 @@ Form::Form(const std::string name, bool is_signed, unsigned int rqrd_sgnd_grd, u
 
 Form &Form::operator=(const Form &rhs)
 {
-	std::cout << "[Form complete constructor called]" << std::endl;
 	this->__is_signed = rhs.__is_signed;
 	return *this;
 }
@@ -46,7 +44,7 @@ void	Form::beSigned(Bureaucrat &newBrct)
 		throw (Form::GradeTooLowException());
 }
 
-const std::string &Form::getName(void)				 {	return (__name);}
+const std::string &Form::getName(void)	const			 {	return (__name);}
 unsigned int Form::get_min_rqrd_sgnd_grd(void) const {	return (__rqrd_sgnd_grd);}
 unsigned int Form::get_min_rqrd_xct_grd(void) const  {	return (__rqrd_xct_grd);}
 bool Form::get_is_signed(void) const				 {	return (__is_signed);	}
@@ -72,7 +70,4 @@ const char *Form::FormNotSignedException::what() const throw()
 	return ("Form not signed");
 }
 
-Form::~Form()
-{
-	std::cout << "[Form destructor called]" << std::endl;
-}
+Form::~Form(){}

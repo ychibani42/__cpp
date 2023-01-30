@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:15:03 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 14:49:33 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:39:53 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ class Animal
 		Animal(void);
 		Animal(const Animal &);
 		Animal(const std::string &animal);
-		virtual	~Animal(void);
+		virtual ~Animal(void);
 		Animal &operator=(const Animal &);
 
 		void		setType(std::string);
 		std::string	getType(void) const;
-		virtual void		makeSound(void) const;
-		virtual std::string	get_idea(int index) = 0;
-		virtual void		set_idea(int index, std::string) = 0;
+		void		makeSound(void) const;
+		virtual std::string	get_idea(int index);
+		virtual void		set_idea(int index, std::string);
 	protected :
 		std::string	type;
-		/* data */
 };
 
 #endif

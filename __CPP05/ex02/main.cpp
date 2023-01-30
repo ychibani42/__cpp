@@ -13,6 +13,8 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int     main(void)
 {
@@ -22,7 +24,7 @@ int     main(void)
 		try
 		{
 			Bureaucrat NotSigned = Bureaucrat("Plouf", 15);
-			ShrubberyCreationForm shrub("plants");
+			ShrubberyCreationForm shrub("Plants");
 			shrub.execute(NotSigned);
 		}
 		catch(const std::exception& e)
@@ -32,8 +34,8 @@ int     main(void)
 		std::cout << "					[NO RIGHTS FORM TESTS]			" << std::endl;
 		try
 		{
-			Bureaucrat Norights = Bureaucrat("Norights", 137);
-			ShrubberyCreationForm shrub("plants");
+			Bureaucrat Norights = Bureaucrat("Norights", 138);
+			ShrubberyCreationForm shrub("Plants");
 			shrub.beSigned(Norights);
 			shrub.execute(Norights);
 		}
@@ -65,10 +67,83 @@ int     main(void)
 		{
 			std::cerr << e.what() << '\n';
 		}
-
-
-
-
 		std::cout << "					[PRESIDENTIAL PARDON FORM TESTS]		" << std::endl;
+		std::cout << "					[NOT SIGNED TESTS]			" << std::endl;
+		try
+		{
+			Bureaucrat NotSigned = Bureaucrat("Plouf", 1);
+			PresidentialPardonForm pardon("Plouf");
+			NotSigned.executeForm(pardon);
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		std::cout << "					[NO RIGHTS FORM TESTS]			" << std::endl;
+		try
+		{
+			Bureaucrat Norights = Bureaucrat("Norights", 26);
+			PresidentialPardonForm pardon("Plouf");
+			Norights.signForm(pardon);
+			Norights.executeForm(pardon);
+			while (Norights.get_rank() > 24)
+				Norights.promotion();
+			Norights.signForm(pardon);
+			Norights.signForm(pardon);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		std::cout << "					[WORKING TESTS]			" << std::endl;
+		try
+		{
+			Bureaucrat WK = Bureaucrat("Ok", 1);
+			PresidentialPardonForm pardon("Plouf");
+			WK.signForm(pardon);
+			WK.executeForm(pardon);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		std::cout << "					[ROBOTOMY REQUESTS TESTS]			" << std::endl;
+		std::cout << "					[NOT SIGNED TESTS]			" << std::endl;
+		try
+		{
+			Bureaucrat NotSigned = Bureaucrat("Plouf", 1);
+			RobotomyRequestForm robot("Plouf");
+			robot.execute(NotSigned);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		std::cout << "					[NO RIGHTS FORM TESTS]			" << std::endl;
+		try
+		{
+			Bureaucrat Norights = Bureaucrat("Norights", 46);
+			RobotomyRequestForm robot("Plouf");
+			Norights.signForm(robot);
+			Norights.executeForm(robot);
+			Norights.promotion();
+			Norights.executeForm(robot);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		std::cout << "					[WORKING TESTS]			" << std::endl;
+		try
+		{
+			Bureaucrat WK = Bureaucrat("Ok", 1);
+			RobotomyRequestForm robot("Plouf1");
+			robot.beSigned(WK);
+			robot.execute(WK);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
         return (0);
 }

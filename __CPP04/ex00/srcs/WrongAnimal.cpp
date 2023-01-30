@@ -12,52 +12,52 @@
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(void)
-{
-	if (DEBUG)
-		std::cout << "[WrongAnimal constructor called]" << std::endl;
 
+WrongAnimal::WrongAnimal (void) : type("unknown")
+{
+	std::cout << "[WrongAnimal default constructor called]" << std::endl;
+	return;
 }
 
-WrongAnimal::~WrongAnimal(void)
+WrongAnimal::WrongAnimal (std::string type) : type(type)
 {
-	if (DEBUG)
-		std::cout << "[WrongAnimal destructor called]" << std::endl;
+	std::cout << "[WrongAnimal string constructor called]" << std::endl;
+	return;
+}
+
+WrongAnimal::WrongAnimal (const WrongAnimal& ref)
+{
+	std::cout << "[WrongAnimal copy constructor called]" << std::endl;
+	*this = ref;
+}
+
+WrongAnimal::~WrongAnimal (void)
+{
+	std::cout << "[WrongAnimal default destructor called]" << std::endl;
+	return;
+}
+
+
+WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& ref)
+{
+	if (this == &ref) {return *this;}
 	
-}
-
-WrongAnimal::WrongAnimal(const std::string &animal) : type(animal)
-{
-	if (DEBUG)
-		std::cout << "[WrongAnimal string constructor called]" << std::endl;
-}
-
-WrongAnimal::WrongAnimal(const WrongAnimal &cpy)
-{
-	if (DEBUG)
-		std::cout << "[WrongAnimal copy constructor called]" << std::endl;
-	*this = cpy;
-}
-
-WrongAnimal &WrongAnimal::operator=(const WrongAnimal &to_assign)
-{
-	this->type = to_assign.type;
-	if (DEBUG)
-		std::cout << "[Dog assignement operator overload called]" << std::endl;
+	this->type = ref.type;
 	return (*this);
+}
+
+
+void WrongAnimal::makeSound(void) const
+{
+	std::cout << "WrongAnimal make sound" << std::endl;
+}
+
+std::string	WrongAnimal::getType(void) const
+{
+	return (this->type);
 }
 
 void	WrongAnimal::setType(std::string type)
 {
 	this->type = type;
-}
-
-std::string WrongAnimal::getType(void) const
-{
-	return (this->type);
-}
-
-void	WrongAnimal::makeSound(void) const
-{
-	std::cout << "Unknown WrongAnimal make's sound" << std::endl;
 }

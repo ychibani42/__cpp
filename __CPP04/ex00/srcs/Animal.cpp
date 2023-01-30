@@ -6,44 +6,37 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 13:08:55 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/03 15:48:50 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:09:07 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal_class.hpp"
 
-Animal::Animal(void)
+Animal::Animal(void) : type("Animal")
 {
-	if (DEBUG)
-		std::cout << "[Animal constructor called]" << std::endl;
-
+	std::cout << "[Animal constructor called]" << std::endl;
 }
 
 Animal::~Animal(void)
 {
-	if (DEBUG)
-		std::cout << "[Animal destructor called]" << std::endl;
-	
+	std::cout << "[Animal destructor called]" << std::endl;
 }
 
 Animal::Animal(const std::string &animal) : type(animal)
 {
-	if (DEBUG)
-		std::cout << "[Animal string constructor called]" << std::endl;
+	std::cout << "[Animal string constructor called]" << std::endl;
 }
 
 Animal::Animal(const Animal &cpy)
 {
-	if (DEBUG)
-		std::cout << "[Animal copy constructor called]" << std::endl;
+	std::cout << "[Animal copy constructor called]" << std::endl;
 	*this = cpy;
 }
 
 Animal &Animal::operator=(const Animal &to_assign)
 {
 	this->type = to_assign.type;
-	if (DEBUG)
-		std::cout << "[Dog assignement operator overload called]" << std::endl;
+	std::cout << "[Dog assignement operator overload called]" << std::endl;
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 13:07:16 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 14:24:30 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:48:00 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 Cat::Cat(void) : Animal("Cat")
 {
-	this->_Brain = new Brain();
 	std::cout << "[Cat default constructor called]" << std::endl;
+	this->_Brain = new Brain();
 }
 
 Cat::~Cat(void)
@@ -27,6 +27,7 @@ Cat::~Cat(void)
 Cat::Cat(Cat &to_assign)
 {
 	std::cout << "[Cat copy constructor called]" << std::endl;
+	this->_Brain = new Brain();
 	*this = to_assign;
 }
 
@@ -42,8 +43,8 @@ std::string Cat::get_idea(int index)
 
 Cat &Cat::operator=(const Cat &cpy)
 {
-	this->type = cpy.type;
 	std::cout << "[Cat assignement operator overload called]" << std::endl;
+	this->type = cpy.type;
 	return (*this);
 }
 

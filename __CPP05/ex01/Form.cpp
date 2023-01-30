@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:31:46 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/15 13:50:45 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:38:31 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ Form::Form(const Form &cpy) : __rqrd_sgnd_grd(cpy.__rqrd_sgnd_grd), __rqrd_xct_g
 
 Form::Form(const std::string name, bool is_signed, unsigned int rqrd_sgnd_grd, unsigned int rqrd_xct_grd) : __name(name), __rqrd_sgnd_grd(rqrd_sgnd_grd), __rqrd_xct_grd(rqrd_xct_grd)
 {
-	std::cout << "[Form complete constructor called]" << std::endl;
 	if (rqrd_sgnd_grd < 1 || rqrd_xct_grd < 1)
 		throw (Form::GradeTooHighException());
 	else if (rqrd_sgnd_grd > 150 || rqrd_xct_grd > 150)
@@ -31,7 +30,6 @@ Form::Form(const std::string name, bool is_signed, unsigned int rqrd_sgnd_grd, u
 
 Form &Form::operator=(const Form &rhs)
 {
-	std::cout << "[Form complete constructor called]" << std::endl;
 	this->__is_signed = rhs.__is_signed;
 	return *this;
 }
@@ -39,7 +37,7 @@ Form &Form::operator=(const Form &rhs)
 void	Form::beSigned(Bureaucrat &newBrct)
 {
 	if (this->__is_signed)
-		throw std::invalid_argument(" form already signed");
+		throw std::invalid_argument("Form already signed");
 	else if (newBrct.get_rank() <= this->__rqrd_sgnd_grd)
 		__is_signed = true;	
 	else
@@ -59,7 +57,7 @@ std::ostream &operator<<(std::ostream &os, Form &frm)
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return "Grade is too low";
+    return ("Grade is too low");
 }
 
 const char *Form::GradeTooHighException::what() const throw()
@@ -67,7 +65,4 @@ const char *Form::GradeTooHighException::what() const throw()
 	return ("Grade too high");
 }
 
-Form::~Form()
-{
-	std::cout << "[Form destructor called]" << std::endl;
-}
+Form::~Form(){}

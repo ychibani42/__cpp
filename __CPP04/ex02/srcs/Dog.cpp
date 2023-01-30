@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:00:09 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/05 14:25:34 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:48:08 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Dog::~Dog(void)
 Dog::Dog(Dog &to_assign)
 {
 	std::cout << "[Dog copy constructor called]" << std::endl;
+	this->_Brain = new Brain();
 	*this = to_assign;
 }
 

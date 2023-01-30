@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:15:03 by ychibani          #+#    #+#             */
-/*   Updated: 2023/01/03 15:51:39 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:03:28 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Animal
 
 	protected :
 		std::string	type;
-		/* data */
 };
 
 #endif
