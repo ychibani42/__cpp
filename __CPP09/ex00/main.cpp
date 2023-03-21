@@ -58,12 +58,45 @@ int	check_date(std::string date)
 
 int	check_value(std::string value)
 {
-	for (i = 0; i < date.size(); i++)
-		if (date[i] == '-')
-			date[i] = ' ';
-	std::istringstream	nb(value);
+	std::istringstream nb(value);
+	std::basic_string<char>::size_type i = 0;
+	double to_check;
 
+	nb >> to_check;
+	if (to_check < 0)
+		return (4);
+	if (value.size() > 11)
+		return (3);
+	for (i = 0; i < value.size(); i++)
+	{
+		if (value[i] == '.' && i != 0)
+			break;
+		if (!isdigit(value[i]))
+			return (2);
+	}
+	for (i++ ; i < value.size(); i++)
+	{
+		if (!isdigit(value[i]))
+			return (2);
+	}
+	if (to_check > INT_MAX)	
+		return (3);
 	return (__SUCCESS);
+}
+
+void too_big_nb()
+{
+	std::cout << "value is_too big" << std::endl;
+}
+
+void too_low_nb()
+{
+	std::cout << "value can't be negatif" << std::endl;
+}
+
+void not_a_number()
+{
+	std::cout << "not a number" << std::endl;
 }
 
 int	trim_and_split(std::string line)
@@ -77,10 +110,27 @@ int	trim_and_split(std::string line)
 	tmp_year >> value;
 	date.erase(date.end() - 1);
 	if (check_date(date) == __FAILURE)
+	{
+			std::cout << "bad input => " << line << std::endl;
 		return (__FAILURE);
+	}
+	int res = check_value(value);
+	if (res == 4)
+	{
+		std::cout << value << std::endl;
+		return (too_low_nb(), __FAILURE);
+	}
+	else if (res == 2)
+	{
+		std::cout << value << std::endl;
+		return (not_a_number(), __FAILURE);
+	}
+	else if (res == 3)
+	{
+		std::cout << value << std::endl;
+		return (too_big_nb(), __FAILURE);
+	}
 	return (__SUCCESS);
-	if (check_value(value) == __FAILURE)
-		return (__FAILURE);
 }
 
 int parse(char **av)
@@ -108,8 +158,7 @@ int parse(char **av)
 	{
 		if (line[0] == '#' || line.empty() || line == "date | value")
 			continue;
-		if (trim_and_split(line) == __FAILURE)
-			std::cout << "bad input => " << line << std::endl;
+		trim_and_split(line);
 	}
 	input_file.close();
 	csv_file.close();

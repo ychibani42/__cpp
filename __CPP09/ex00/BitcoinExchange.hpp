@@ -27,6 +27,7 @@
 #include <fstream>
 #include <sstream>
 #include <sys/stat.h>
+#include <limits.h>
 #include <map>
 
 class BitcoinExchange
