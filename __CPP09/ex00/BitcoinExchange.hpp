@@ -42,4 +42,9 @@ class BitcoinExchange
 		std::map<std::string , float> __btree;
 };
 
+void	is_reg(std::string infile);
+void	open_error(std::string infile);
+void	dir_error(std::string infile);
+void	usage(void);
+
 #endif

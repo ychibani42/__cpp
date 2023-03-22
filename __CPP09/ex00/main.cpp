@@ -38,7 +38,7 @@ int	check_date(std::string date)
 	{
 		if (i == 0)
 		{
-			if (to_check < 2000 || to_check > 2023)
+			if (to_check < 2010 || to_check > 2023)
 				return (__FAILURE);
 		}
 		else if (i == 1)
@@ -91,7 +91,7 @@ void too_big_nb()
 
 void too_low_nb()
 {
-	std::cout << "value can't be negatif" << std::endl;
+	std::cout << "value can't be negative" << std::endl;
 }
 
 void not_a_number()
@@ -135,13 +135,10 @@ int	trim_and_split(std::string line)
 
 int parse(char **av)
 {
-	BitcoinExchange	tree_to_set;
 	struct stat file_stat;
 
 	std::string infile = av[1];
-	std::string csv = "data.csv";
     std::ifstream   input_file(infile.c_str());
-    std::ifstream   csv_file(csv.c_str());
     if (!stat(infile.c_str(), &file_stat))
     {
 	    if (S_ISDIR(file_stat.st_mode))
@@ -149,8 +146,6 @@ int parse(char **av)
 		if (!S_ISREG(file_stat.st_mode))
 				return (is_reg(infile), __FAILURE);
         if (!input_file.is_open())
-                return (open_error(infile), __FAILURE);
-        if (!csv_file.is_open())
                 return (open_error(infile), __FAILURE);
 	}
 	std::string line;
@@ -161,32 +156,18 @@ int parse(char **av)
 		trim_and_split(line);
 	}
 	input_file.close();
-	csv_file.close();
 	return (1);
-}
-
-#include <vector>
-
-std::vector<std::string> split(std::string str, std::string delimiter)
-{
-	std::vector<std::string> values;
-
-	size_t position;
-	while ((position = str.find(delimiter)) != std::string::npos)
-	{
-		values.push_back(str.substr(0, position));
-		str.erase(0, position + delimiter.length());
-	}
-	values.push_back(str);
-	return values;
 }
 
 int main(int ac, char **av)
 {
+	BitcoinExchange tree;
+
 	if (!(ac == 2) || !std::strlen(av[1]))
 		return (usage(), 2);
 	if (parse(av) == __FAILURE)
 		return (__FAILURE);
+	double final_value 
 }
 
 // utiliser map, prendre la data du .csv, prendre la doneee de la data la plus proche, 
