@@ -38,13 +38,9 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &);
 		std::map<std::string , float> getTree() const;
 		BitcoinExchange &operator=(const BitcoinExchange &rh);
+		double getBtcValue(std::string date);
 	private :
 		std::map<std::string , float> __btree;
 };
-
-void	is_reg(std::string infile);
-void	open_error(std::string infile);
-void	dir_error(std::string infile);
-void	usage(void);
 
 #endif

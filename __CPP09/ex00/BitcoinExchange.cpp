@@ -1,5 +1,13 @@
 #include "BitcoinExchange.hpp"
 
+void	print_tree(const std::map<std::string, float> &tree)
+{
+	for (std::map<std::string, float>::const_iterator it = tree.begin(); it != tree.end(); it++)
+	{
+		std::cout << "first == [" << it->first << "]" << std::endl;
+		std::cout << "second == [" << it->second << "]" << std::endl;;
+	}
+}
 
 BitcoinExchange::BitcoinExchange() : __btree() 
 {
@@ -22,8 +30,8 @@ BitcoinExchange::BitcoinExchange() : __btree()
 	{
 		date = it->first;
 		price = it->second;
-		std::cout << " date + price = :" << date << " " << price << std::endl;
 	}
+	print_tree(__btree);
 }
 
 BitcoinExchange::~BitcoinExchange(){}
@@ -37,6 +45,22 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &lv)
 std::map<std::string, float> BitcoinExchange::getTree() const
 {
 	return (this->__btree);
+}
+
+double	BitcoinExchange::getBtcValue(std::string date)
+{
+	std::map<std::string, float>::iterator it = __btree.find(date);
+	if (it == __btree.end())
+	{
+		std::map<std::string, float>::iterator lower = __btree.lower_bound(date);
+		if (lower == __btree.begin())
+			throw ("Btc didn't exist at this date");
+		if (lower->first != date)
+			lower--;
+		return (lower->second);
+	}
+	std::cout << " sadsada " << std::endl;
+	return (it->second);
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rh)

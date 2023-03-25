@@ -13,5 +13,4 @@ void iter(T *t, int size, void (*f)(T const &))
         f(t[i]);
 }
 
-
 #endif

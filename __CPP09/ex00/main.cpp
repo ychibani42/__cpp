@@ -86,20 +86,25 @@ int	check_value(std::string value)
 
 void too_big_nb()
 {
-	std::cout << "value is_too big" << std::endl;
+	std::cout << "Error: too large number." << std::endl;
 }
 
 void too_low_nb()
 {
-	std::cout << "value can't be negative" << std::endl;
+	std::cout << "Error: not a positive number." << std::endl;
 }
 
 void not_a_number()
 {
-	std::cout << "not a number" << std::endl;
+	std::cout << "Error: invalid input." << std::endl;
 }
 
-int	trim_and_split(std::string line)
+void bad_input(std::string line)
+{
+	std::cout << "Error: bad input => " << line << std::endl;
+}
+
+int	trim_and_split(std::string line, BitcoinExchange tree)
 {
 	std::string value;
 	std::string date;
@@ -110,30 +115,29 @@ int	trim_and_split(std::string line)
 	tmp_year >> value;
 	date.erase(date.end() - 1);
 	if (check_date(date) == __FAILURE)
-	{
-			std::cout << "bad input => " << line << std::endl;
-		return (__FAILURE);
-	}
+		return (bad_input(line), __FAILURE);
 	int res = check_value(value);
 	if (res == 4)
-	{
-		std::cout << value << std::endl;
 		return (too_low_nb(), __FAILURE);
-	}
 	else if (res == 2)
-	{
-		std::cout << value << std::endl;
 		return (not_a_number(), __FAILURE);
-	}
 	else if (res == 3)
-	{
-		std::cout << value << std::endl;
 		return (too_big_nb(), __FAILURE);
+	std::istringstream	mult_value(value);
+	double value_mult;
+	mult_value >> value_mult;
+	try
+	{
+		std::cout << date << " => " << value << " = " << tree.getBtcValue(date) * value_mult << std::endl;
+	}
+	catch (std::exception &)
+	{
+		std::cout << "Can't " << std::endl;
 	}
 	return (__SUCCESS);
 }
 
-int parse(char **av)
+int parse(char **av, BitcoinExchange tree)
 {
 	struct stat file_stat;
 
@@ -153,11 +157,13 @@ int parse(char **av)
 	{
 		if (line[0] == '#' || line.empty() || line == "date | value")
 			continue;
-		trim_and_split(line);
+		trim_and_split(line, tree);
 	}
 	input_file.close();
 	return (1);
 }
+
+
 
 int main(int ac, char **av)
 {
@@ -165,16 +171,9 @@ int main(int ac, char **av)
 
 	if (!(ac == 2) || !std::strlen(av[1]))
 		return (usage(), 2);
-	if (parse(av) == __FAILURE)
+	if (parse(av, tree) == __FAILURE)
 		return (__FAILURE);
-	double final_value 
+	// print_tree(tree.getTree());
 }
-
-// utiliser map, prendre la data du .csv, prendre la doneee de la data la plus proche, 
-//  map = arbre binaire; donc possibilite de parcourir plus vite 
-// faire gaffe aux jours a 30 ou 31 jours
-// constructor en forme de string;
-// si la date n'existe pas, chercher a la date la plus proche
-
 
 //exercice 2 stack
