@@ -29,6 +29,7 @@
 #include <sys/stat.h>
 #include <limits.h>
 #include <map>
+#include <stdlib.h>
 
 class BitcoinExchange
 {
@@ -38,7 +39,7 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &);
 		std::map<std::string , float> getTree() const;
 		BitcoinExchange &operator=(const BitcoinExchange &rh);
-		double getBtcValue(std::string date);
+		float getBtcValue(std::string &date);
 	private :
 		std::map<std::string , float> __btree;
 };

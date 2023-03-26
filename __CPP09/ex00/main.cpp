@@ -38,7 +38,7 @@ int	check_date(std::string date)
 	{
 		if (i == 0)
 		{
-			if (to_check < 2010 || to_check > 2023)
+			if (to_check < 2009 || to_check > 2023)
 				return (__FAILURE);
 		}
 		else if (i == 1)
@@ -130,9 +130,9 @@ int	trim_and_split(std::string line, BitcoinExchange tree)
 	{
 		std::cout << date << " => " << value << " = " << tree.getBtcValue(date) * value_mult << std::endl;
 	}
-	catch (std::exception &)
+	catch (std::exception &e)
 	{
-		std::cout << "Can't " << std::endl;
+		std::cout << "Can't convert because : " << e.what() << std::endl;
 	}
 	return (__SUCCESS);
 }
@@ -164,7 +164,6 @@ int parse(char **av, BitcoinExchange tree)
 }
 
 
-
 int main(int ac, char **av)
 {
 	BitcoinExchange tree;
@@ -173,7 +172,6 @@ int main(int ac, char **av)
 		return (usage(), 2);
 	if (parse(av, tree) == __FAILURE)
 		return (__FAILURE);
-	// print_tree(tree.getTree());
 }
 
 //exercice 2 stack
