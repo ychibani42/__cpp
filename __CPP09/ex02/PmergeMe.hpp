@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __RPN_HPP__
-# define __RPN_HPP__
+#ifndef __PMERGEME_HPP__
+# define __PMERGEME_HPP__
 
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
 #include <string>
-#include <stack>
-#include <cmath>
+#include <vector>
+#include <list>
 
 # ifndef __SUCCESS
 #  define __SUCCESS 1
@@ -37,21 +37,16 @@
 # endif
 
 
-class RPN 
+class PmergeMe 
 {
 	public:
-		RPN();
-		RPN(RPN &);
-		~RPN();
-		RPN &operator=(const RPN &);
-		std::stack<int> getList(void) const;
-		int	do_op(std::string str);
-		
+		PmergeMe();
+		PmergeMe(PmergeMe &);
+		~PmergeMe();
+		PmergeMe &operator=(const PmergeMe &);
 	private :
-		std::stack<int> __list;
+		std::list<int> __list;
+		std::vector<int> __vector;
 };
-
-int	is_operator(char ch);
-int	is_digit(char ch);
 
 #endif

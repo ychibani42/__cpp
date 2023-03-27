@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:31:49 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/26 18:20:20 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:42:17 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,18 @@ int main(int ac, char **av)
 {
 	RPN	list;
 
-	if (!(ac == 2))
+	if ((!(ac == 2)))
 		return (error(), __FAILURE);
 	if (parse(av[1]) == __FAILURE)
 		return (error(), __FAILURE);
-	int res = list.do_op(av[1]);
-	std::cout << res << std::endl;
+	try
+	{
+		int res = list.do_op(av[1]);
+		std::cout << res << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (__SUCCESS);
 }

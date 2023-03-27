@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:47:53 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/26 18:53:19 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:43:14 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_list(std::stack<int> arr)
 	}
 }
 
-void operation(int a, int b, char op, std::stack<int> arr){
+void operation(int a, int b, char op, std::stack<int> &arr){
    //Perform operation
    if(op == '+')
       arr.push(b+a);
@@ -55,25 +55,30 @@ void operation(int a, int b, char op, std::stack<int> arr){
 
 int	RPN::do_op(std::string str)
 {
+	std::istringstream ss(str);
+	std::string token;
 
-	for (size_t i = 0; i < str.size(); i++)
+	if (str.empty())
+		throw std::range_error("Empty string");
+	while (ss >> token)
 	{
-		if (is_operator(str[i]))
+		if (is_operator(token[0]) && token.size() > 1)
+			throw std::range_error("Invalid operator");
+		if (is_operator(token[0]))
 		{
+			if (__list.size() < 2)
+				throw std::range_error("Not enough numbers");
 			int a = __list.top();
 			__list.pop();
 			int b = __list.top();
 			__list.pop();
-			operation(a, b, str[i], __list);
-			i++;
+			operation(a, b, token[0], __list);
 		}
 		else
-		{
-			__list.push(atoi(str.c_str() + i));
-			while (is_digit(str[i]))
-				i++;
-		}
+			__list.push(atoi(token.c_str()));
 	}
+	if (__list.size() > 1)
+				throw std::range_error("Too much numbers");
 	return (__list.top());
 }
 
