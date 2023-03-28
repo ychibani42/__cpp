@@ -43,12 +43,12 @@ int	check_date(std::string date)
 		}
 		else if (i == 1)
 		{
-			if (to_check < 1 || to_check > 11)
+			if (to_check < 1 || to_check > 12)
 				return (__FAILURE);
 		}
 		else
 		{
-			if (to_check < 1 || to_check > 30)
+			if (to_check < 1 || to_check > 31)
 				return (__FAILURE);
 		}
 		i++;
@@ -152,6 +152,8 @@ int parse(char **av, BitcoinExchange tree)
         if (!input_file.is_open())
                 return (open_error(infile), __FAILURE);
 	}
+	if (is_empty(input_file))
+		throw std::range_error("Empty input File");
 	std::string line;
 	while (std::getline(input_file, line))
 	{
@@ -160,18 +162,26 @@ int parse(char **av, BitcoinExchange tree)
 		trim_and_split(line, tree);
 	}
 	input_file.close();
-	return (1);
+	return (__SUCCESS);
 }
 
 
 int main(int ac, char **av)
 {
-	BitcoinExchange tree;
-
-	if (!(ac == 2) || !std::strlen(av[1]))
+	std::string file;
+	if (!(ac == 2 || ac == 3) || !std::strlen(av[1]))
 		return (usage(), 2);
-	if (parse(av, tree) == __FAILURE)
-		return (__FAILURE);
+	if (ac == 3)
+		file = av[2];
+	else
+		file = "data.csv";
+	try
+	{
+		BitcoinExchange tree(file);
+		parse(av, tree);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
-
-//exercice 2 stack

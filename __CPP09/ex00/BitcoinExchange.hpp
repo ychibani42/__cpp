@@ -27,21 +27,28 @@
 #include <fstream>
 #include <sstream>
 #include <sys/stat.h>
-#include <limits.h>
+#include <climits>
+#include <limits>
 #include <map>
-#include <stdlib.h>
+#include <cstdlib>
 
 class BitcoinExchange
 {
 	public :
 		BitcoinExchange();
 		~BitcoinExchange();
+		BitcoinExchange(std::string csv_file);
 		BitcoinExchange(const BitcoinExchange &);
 		std::map<std::string , float> getTree() const;
 		BitcoinExchange &operator=(const BitcoinExchange &rh);
 		float getBtcValue(std::string &date);
 	private :
+		std::ifstream __csv_file;
+		void	__parse_csv(std::string csv_file);
 		std::map<std::string , float> __btree;
 };
 
+int	check_date(std::string date);
+int	check_value(std::string value);
+bool is_empty(std::ifstream& pFile);
 #endif

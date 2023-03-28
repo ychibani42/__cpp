@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:47:53 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/27 13:43:14 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/28 11:02:18 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	print_list(std::stack<int> arr)
 }
 
 void operation(int a, int b, char op, std::stack<int> &arr){
-   //Perform operation
    if(op == '+')
       arr.push(b+a);
    else if (op == '-')
