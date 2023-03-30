@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:31:49 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/27 13:42:17 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:29:35 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	error()
 	std::cout << "Error" << std::endl;
 }
 
-int	is_operator(char ch)
+int	is_operator(std::string str)
 {
-	if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')	
+	if (str.size() != 1)
+		return (__FALSE);
+	if (str[0] == '+' || str[0] == '-' || str[0] == '*' || str[0] == '/' || str[0] == '^')
 		return (__TRUE);
 	return (__FALSE);
 }
@@ -33,9 +35,11 @@ int	is_digit(char ch)
 
 int	parse(std::string str)
 {
+	std::string s2;
 	for (size_t i = 0; i < str.size(); i++)
 	{
-		if (!is_operator(str[i]) && str[i] != ' ' && !is_digit(str[i]))
+		s2 = str[i];
+		if (!is_operator(s2) && str[i] != ' ' && !is_digit(str[i]) && str[i] != '-')
 			return (__FAILURE);
 	}
 	return (1);

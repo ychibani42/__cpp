@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:33:24 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/27 13:35:24 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:43:04 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <string>
 #include <stack>
 #include <cmath>
+#include <climits>
+#include <limits>
 
 # ifndef __SUCCESS
 #  define __SUCCESS 1
@@ -51,7 +53,7 @@ class RPN
 		std::stack<int> __list;
 };
 
-int	is_operator(char ch);
+int	is_operator(std::string str);
 int	is_digit(char ch);
 
 #endif

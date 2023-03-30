@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:47:53 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/28 11:02:18 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:04:20 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 RPN::RPN()
 {
-	
 }
 
 RPN::~RPN()
 {
-
 }
 
 RPN::RPN(RPN &cpy)
@@ -27,8 +25,7 @@ RPN::RPN(RPN &cpy)
 	*this = cpy;
 }
 
-
-void	print_list(std::stack<int> arr)
+void print_list(std::stack<int> arr)
 {
 	while (!arr.empty())
 	{
@@ -37,22 +34,63 @@ void	print_list(std::stack<int> arr)
 	}
 }
 
-void operation(int a, int b, char op, std::stack<int> &arr){
-   if(op == '+')
-      arr.push(b+a);
-   else if (op == '-')
-      arr.push(b-a);
-   else if (op == '*')
-      arr.push(b*a);
-   else if (op == '/')
-      arr.push(b/a);
-   else if (op == '^')
-      arr.push(pow(b, a));
-   else
-      throw ("can't convert");
+void operation(int a, int b, char op, std::stack<int> &arr)
+{
+	int res = 0;
+
+	if (op == '+')
+	{
+		if (b + a > INT_MAX || b + a < INT_MIN)
+			throw std::range_error("res too big or too low");
+		res = b + a;
+	}
+	else if (op == '-')
+	{
+		if (b - a > INT_MAX || b - a < INT_MIN)
+			throw std::range_error("res too big or too low");
+		res = (b - a);
+	}
+	else if (op == '*')
+	{
+		if (b * a > INT_MAX || b * a < INT_MIN)
+			throw std::range_error("res too big or too low");
+		res = (b * a);
+	}
+	else if (op == '/')
+	{
+		if (!a || !b)
+			throw std::range_error("Can't divide number by 0");
+		if (b / a > INT_MAX || b / a < INT_MIN)
+			throw std::range_error("res too big or too low");
+		res = b / a;
+	}
+	else if (op == '^')
+	{
+		if (pow(b, a) > INT_MAX || pow(b, a) < INT_MIN)
+			throw std::range_error("res too big or too low");
+		res = pow(b, a);
+	}
+	else
+		throw ("Can't convert");
+	arr.push(res);
 }
 
-int	RPN::do_op(std::string str)
+int	is_number(std::string str)
+{
+	size_t	start = 0;
+	if (str[0] == '-' && is_digit(str[1]))
+		start = 1;
+	for (size_t i = start; i < str.size(); i++)
+	{
+		if (!is_digit(str[i]))
+			return (__FALSE);
+	}
+	if (str.size() - start > 1)
+		return (__FALSE);
+	return (__TRUE);
+}
+
+int RPN::do_op(std::string str)
 {
 	std::istringstream ss(str);
 	std::string token;
@@ -61,9 +99,9 @@ int	RPN::do_op(std::string str)
 		throw std::range_error("Empty string");
 	while (ss >> token)
 	{
-		if (is_operator(token[0]) && token.size() > 1)
-			throw std::range_error("Invalid operator");
-		if (is_operator(token[0]))
+		if (is_number(token))
+			__list.push(atoi(token.c_str()));
+		else if (is_operator(token))
 		{
 			if (__list.size() < 2)
 				throw std::range_error("Not enough numbers");
@@ -74,10 +112,10 @@ int	RPN::do_op(std::string str)
 			operation(a, b, token[0], __list);
 		}
 		else
-			__list.push(atoi(token.c_str()));
+			throw std::range_error("Error");
 	}
 	if (__list.size() > 1)
-				throw std::range_error("Too much numbers");
+		throw std::range_error("Too much numbers");
 	return (__list.top());
 }
 

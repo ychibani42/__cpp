@@ -19,6 +19,8 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <limits>
+#include <climits>
 
 # ifndef __SUCCESS
 #  define __SUCCESS 1
@@ -44,9 +46,14 @@ class PmergeMe
 		PmergeMe(PmergeMe &);
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe &);
+		void	sort();
+		void	MergeInsertionSort(std::list<int> list);
+		void	MergeInsertionSort(std::vector<int> vector);
 	private :
 		std::list<int> __list;
 		std::vector<int> __vector;
+		double	__list_t;
+		double	__vector_t;
 };
 
 #endif
