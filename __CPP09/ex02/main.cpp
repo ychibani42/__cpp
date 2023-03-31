@@ -69,12 +69,6 @@ std::vector<int> fill_my_vector(std::string final_str)
 	return (arr);
 }
 
-void	print_vec(std::vector<int> arr)
-{
-	for (std::vector<int>::iterator it; it != arr.end(); it++)
-		std::cout << "[" << *it << "]" << std::endl;
-}
-
 int	main(int ac, char **av)
 {
 	std::string final_str;
@@ -84,5 +78,6 @@ int	main(int ac, char **av)
 	if (parse(ac, av, final_str) == __FAILURE)
 		return (std::cout << "parsing error" << std::endl, __FAILURE);
 	std::vector<int> arr = fill_my_vector(final_str);
-	print_vec(arr);
+	PmergeMe MergeMe(arr);
+	MergeMe.sort();
 }

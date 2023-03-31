@@ -18,7 +18,10 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include <list>
+#include <bits/stdc++.h>
+#include <time.h>
+#include <deque>
+#include <algorithm>
 #include <limits>
 #include <climits>
 
@@ -42,18 +45,22 @@
 class PmergeMe 
 {
 	public:
-		PmergeMe();
+		PmergeMe(std::vector<int>);
 		PmergeMe(PmergeMe &);
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe &);
 		void	sort();
-		void	MergeInsertionSort(std::list<int> list);
-		void	MergeInsertionSort(std::vector<int> vector);
+		void	MergeInsertionSort(std::deque<std::pair<int, int> > deque);
+		void	MergeInsertionSort(std::vector<std::pair<int, int> > vector);
 	private :
-		std::list<int> __list;
+		std::deque<int> __deque;
 		std::vector<int> __vector;
-		double	__list_t;
+		double	__deque_t;
 		double	__vector_t;
+		std::vector<std::pair<int, int> > vec_pairs;
+		std::deque<std::pair<int, int> > deq_pairs;
+		bool	__is_odd;
+		int		__odd_value;
 };
 
 #endif

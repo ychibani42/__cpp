@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:33:24 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/28 15:43:04 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:54:12 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <string>
 #include <stack>
+#include <list>
 #include <cmath>
 #include <climits>
 #include <limits>
@@ -50,7 +51,7 @@ class RPN
 		int	do_op(std::string str);
 		
 	private :
-		std::stack<int> __list;
+		std::stack<int, std::list<int> > __list;
 };
 
 int	is_operator(std::string str);
