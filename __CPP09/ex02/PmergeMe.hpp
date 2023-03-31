@@ -50,7 +50,7 @@ class PmergeMe
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe &);
 		void	sort();
-		void	MergeInsertionSort(std::deque<std::pair<int, int> > deque);
+		void	MergeInsertionSort(std::deque<std::pair<int, int> > &deque);
 		void	MergeInsertionSort(std::vector<std::pair<int, int> > vector);
 	private :
 		std::deque<int> __deque;

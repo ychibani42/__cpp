@@ -58,23 +58,47 @@ PmergeMe::~PmergeMe() {}
 // 	return (*this);
 // }
 
-void	PmergeMe::MergeInsertionSort(std::deque<std::pair<int, int> > deq_pairs)
+
+// void	CreateSequence()
+// {
+	// std::vector<
+// }
+
+void	SortPairs(std::deque<std::pair<int, int> > &deq_pairs)
 {
-	SortFirstPairsValue();
-	SortPairs();
-	InsertSort();
-	print_seq_pairs(deq_pairs);
+	size_t	i = 0;
+
+	for (std::deque<std::pair<int, int> >::iterator it = deq_pairs.begin(); it != deq_pairs.end(); it++)
+	{
+		if (deq_pairs[i].second > deq_pairs[i + 1].second && it != --deq_pairs.end())
+			std::swap(deq_pairs[i], deq_pairs[i + 1]);
+		i++;
+	}
+}
+
+void	PmergeMe::MergeInsertionSort(std::deque<std::pair<int, int> > &deq_pairs)
+{
+	for (size_t i = 0; i < deq_pairs.size(); i++)
+	{
+		if (deq_pairs[i].first > deq_pairs[i].second)
+			std::swap(deq_pairs[i].first, deq_pairs[i].second);
+	}
+	SortPairs(deq_pairs);
+	// InsertSort();
 }
 
 void	PmergeMe::MergeInsertionSort(std::vector<std::pair<int, int> > vec_pairs)
 {
-	print_vec_pairs(vec_pairs);
+	(void)vec_pairs;
+	// print_vec_pairs(vec_pairs);
 }
 
 void	PmergeMe::sort()
 {
 	clock_t start = clock();
-	MergeInsertionSort(vec_pairs);
+	print_seq_pairs(deq_pairs);
+	MergeInsertionSort(deq_pairs);
+	print_seq_pairs(deq_pairs);
 	clock_t end = clock();
 
 	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
