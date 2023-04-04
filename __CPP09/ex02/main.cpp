@@ -78,6 +78,7 @@ int	main(int ac, char **av)
 	if (parse(ac, av, final_str) == __FAILURE)
 		return (std::cout << "parsing error" << std::endl, __FAILURE);
 	std::vector<int> arr = fill_my_vector(final_str);
+	
 	PmergeMe MergeMe(arr);
 	MergeMe.sort();
 }

@@ -50,15 +50,17 @@ class PmergeMe
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe &);
 		void	sort();
+		int		BinarySearch(int to_insert, int start, int end);
+		void	BinaryInsertion();
 		void	MergeInsertionSort(std::deque<std::pair<int, int> > &deque);
-		void	MergeInsertionSort(std::vector<std::pair<int, int> > vector);
+		void	MergeInsertionSort(std::vector<std::pair<int, int> > &vector);
 	private :
 		std::deque<int> __deque;
 		std::vector<int> __vector;
-		double	__deque_t;
 		double	__vector_t;
 		std::vector<std::pair<int, int> > vec_pairs;
 		std::deque<std::pair<int, int> > deq_pairs;
+		std::vector<int>	__sorted_array;
 		bool	__is_odd;
 		int		__odd_value;
 };
