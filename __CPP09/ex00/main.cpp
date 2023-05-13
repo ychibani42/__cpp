@@ -1,29 +1,53 @@
 #include "BitcoinExchange.hpp"
 
-void	usage(void)
+void usage(void)
 {
-	std::cerr << "usage : ./btc <file_name>" << std::endl;
+	std::cerr << "Error: could not open file." << std::endl;
 }
 
-void	dir_error(std::string infile)
+void dir_error(std::string infile)
 {
 	std::cerr << infile << ": is a directory" << std::endl;
 }
 
-void	open_error(std::string infile)
+void open_error(std::string infile)
 {
 	std::cerr << infile << ": cannot be open" << std::endl;
 }
 
-void	is_reg(std::string infile)
+void is_reg(std::string infile)
 {
 	std::cerr << infile << ": is not a regular file" << std::endl;
 }
 
-int	check_date(std::string date)
+int     daysInMonth(int month)
+{
+    if (month > 7)
+        return (31 - (month % 2));
+    if (month % 2 == 0)
+        return (30);
+    return (31);
+}
+
+int is_valid_date(int year, int month, int day)
+{   
+    if (month < 1 || month > 12 || day < 1)
+        return __FAILURE;
+    else if (month == 2)
+    {
+        if (day < 29 || (day == 29 && (year % 4 == 0 || (year % 100 == 0 && year % 400 != 0))))
+            return __SUCCESS;
+        return __FAILURE;
+    }
+    else if (day > daysInMonth(month))
+        return __FAILURE;
+    return (__SUCCESS);
+}
+
+int check_date(std::string date)
 {
 	std::basic_string<char>::size_type i = 0;
-	int to_check;
+	int year, month, day;
 
 	if (date.size() != 10)
 		return (__FAILURE);
@@ -33,30 +57,15 @@ int	check_date(std::string date)
 		if (date[i] == '-')
 			date[i] = ' ';
 	std::istringstream nb(date);
-	i = 0;
-	while (nb >> to_check)
-	{
-		if (i == 0)
-		{
-			if (to_check < 2009 || to_check > 2023)
-				return (__FAILURE);
-		}
-		else if (i == 1)
-		{
-			if (to_check < 1 || to_check > 12)
-				return (__FAILURE);
-		}
-		else
-		{
-			if (to_check < 1 || to_check > 31)
-				return (__FAILURE);
-		}
-		i++;
-	}
+	nb >> year;
+	nb >> month;
+	nb >> day;
+	if (is_valid_date(year, month, day) == __FAILURE)
+		return (__FAILURE);
 	return (__SUCCESS);
 }
 
-int	check_value(std::string value)
+int check_value(std::string value)
 {
 	std::istringstream nb(value);
 	std::basic_string<char>::size_type i = 0;
@@ -65,8 +74,6 @@ int	check_value(std::string value)
 	nb >> to_check;
 	if (to_check < 0)
 		return (4);
-	if (value.size() > 11)
-		return (3);
 	for (i = 0; i < value.size(); i++)
 	{
 		if (value[i] == '.' && i != 0)
@@ -74,14 +81,17 @@ int	check_value(std::string value)
 		if (!isdigit(value[i]))
 			return (2);
 	}
-	for (i++ ; i < value.size(); i++)
+	for (i++; i < value.size(); i++)
 	{
 		if (!isdigit(value[i]))
 			return (2);
 	}
-	if (to_check > INT_MAX)	
+	if (to_check > 1000)
 		return (3);
-	return (__SUCCESS);
+	else if (to_check < 0)
+		return (4);
+	else
+		return (__SUCCESS);
 }
 
 void too_big_nb()
@@ -104,11 +114,11 @@ void bad_input(std::string line)
 	std::cout << "Error: bad input => " << line << std::endl;
 }
 
-int	trim_and_split(std::string line, BitcoinExchange tree)
+int trim_and_split(std::string line, BitcoinExchange tree)
 {
 	std::string value;
 	std::string date;
-	std::istringstream	tmp_year(line);
+	std::istringstream tmp_year(line);
 	if (tmp_year.fail() || tmp_year.eof())
 		return (__FAILURE);
 	std::getline(tmp_year, date, '|');
@@ -123,16 +133,16 @@ int	trim_and_split(std::string line, BitcoinExchange tree)
 		return (not_a_number(), __FAILURE);
 	else if (res == 3)
 		return (too_big_nb(), __FAILURE);
-	std::istringstream	mult_value(value);
+	std::istringstream mult_value(value);
 	double value_mult;
 	mult_value >> value_mult;
 	try
 	{
-		std::cout << date << " => " << value << " = " << tree.getBtcValue(date) * value_mult << std::endl;
+		std::cout << date << " => " << value << " = " << std::setprecision(2) << tree.getBtcValue(date) * value_mult  << std::endl;
 	}
-	catch (std::exception &e)
+	catch(const std::exception& e)
 	{
-		std::cout << "Can't convert because : " << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
 	return (__SUCCESS);
 }
@@ -142,15 +152,15 @@ int parse(char **av, BitcoinExchange tree)
 	struct stat file_stat;
 
 	std::string infile = av[1];
-    std::ifstream   input_file(infile.c_str());
-    if (!stat(infile.c_str(), &file_stat))
-    {
-	    if (S_ISDIR(file_stat.st_mode))
+	std::ifstream input_file(infile.c_str());
+	if (!stat(infile.c_str(), &file_stat))
+	{
+		if (S_ISDIR(file_stat.st_mode))
 			return (dir_error(infile), __FAILURE);
 		if (!S_ISREG(file_stat.st_mode))
-				return (is_reg(infile), __FAILURE);
-        if (!input_file.is_open())
-                return (open_error(infile), __FAILURE);
+			return (is_reg(infile), __FAILURE);
+		if (!input_file.is_open())
+			return (open_error(infile), __FAILURE);
 	}
 	if (is_empty(input_file))
 		throw std::range_error("Empty input File");
@@ -165,23 +175,19 @@ int parse(char **av, BitcoinExchange tree)
 	return (__SUCCESS);
 }
 
-
 int main(int ac, char **av)
 {
 	std::string file;
-	if (!(ac == 2 || ac == 3) || !std::strlen(av[1]))
+	if (!(ac == 2) || !std::strlen(av[1]))
 		return (usage(), 2);
-	if (ac == 3)
-		file = av[2];
-	else
-		file = "data.csv";
+	file = "data.csv";
 	try
 	{
 		BitcoinExchange tree(file);
 		parse(av, tree);
 	}
-	catch (std::exception &e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
 }

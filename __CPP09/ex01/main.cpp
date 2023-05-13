@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:31:49 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/29 18:29:35 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:10:05 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main(int ac, char **av)
 		return (error(), __FAILURE);
 	try
 	{
-		int res = list.do_op(av[1]);
+		long res = list.do_op(av[1]);
 		std::cout << res << std::endl;
 	}
 	catch(const std::exception& e)

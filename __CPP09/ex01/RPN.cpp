@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:47:53 by ychibani          #+#    #+#             */
-/*   Updated: 2023/03/30 10:04:20 by ychibani         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:08:23 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,44 +34,57 @@ void print_list(std::stack<int> arr)
 	}
 }
 
-void operation(int a, int b, char op, std::stack<int> &arr)
+int nb_len(long nb)
 {
-	int res = 0;
+	int len = 0;
+
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+	{
+		nb *= -1;
+		len++;
+	}
+	while (nb != 0)
+	{
+		nb /= 10;
+		len++;
+	}
+	return (len);
+}
+
+void operation(int a, int b, char op, std::stack<int, std::list<int> > &arr)
+{
+	long res = 0;
 
 	if (op == '+')
 	{
-		if (b + a > INT_MAX || b + a < INT_MIN)
-			throw std::range_error("res too big or too low");
 		res = b + a;
+		if (res > INT_MAX || res < INT_MIN || nb_len(res) > 10)
+			throw std::range_error("res too big or too low");
 	}
 	else if (op == '-')
 	{
-		if (b - a > INT_MAX || b - a < INT_MIN)
-			throw std::range_error("res too big or too low");
 		res = (b - a);
+		if (res > INT_MAX || res < INT_MIN || nb_len(res) > 10)
+			throw std::range_error("res too big or too low");
 	}
 	else if (op == '*')
 	{
-		if (b * a > INT_MAX || b * a < INT_MIN)
-			throw std::range_error("res too big or too low");
 		res = (b * a);
+		if (res > INT_MAX || res < INT_MIN || nb_len(res) > 10)
+			throw std::range_error("res too big or too low");
 	}
 	else if (op == '/')
 	{
 		if (!a || !b)
 			throw std::range_error("Can't divide number by 0");
-		if (b / a > INT_MAX || b / a < INT_MIN)
-			throw std::range_error("res too big or too low");
 		res = b / a;
-	}
-	else if (op == '^')
-	{
-		if (pow(b, a) > INT_MAX || pow(b, a) < INT_MIN)
+		if (res > INT_MAX || res < INT_MIN || nb_len(res) > 10)
 			throw std::range_error("res too big or too low");
-		res = pow(b, a);
 	}
 	else
-		throw ("Can't convert");
+		throw std::range_error("Can't convert");
 	arr.push(res);
 }
 

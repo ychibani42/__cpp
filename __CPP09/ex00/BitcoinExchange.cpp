@@ -1,14 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-void	print_tree(const std::map<std::string, float> &tree)
-{
-	for (std::map<std::string, float>::const_iterator it = tree.begin(); it != tree.end(); it++)
-	{
-		std::cout << "first == [" << it->first << "]" << std::endl;
-		std::cout << "second == [" << it->second << "]" << std::endl;;
-	}
-}
-
 bool is_empty(std::ifstream& pFile)
 {
     return pFile.peek() == std::ifstream::traits_type::eof();
@@ -33,32 +24,9 @@ void	BitcoinExchange::__parse_csv(std::string csv_file)
         if (!__csv_file.is_open())
 			throw std::range_error("Csv file cannot be openned.");
 	}
-	std::string line;
 	std::ifstream csv(csv_file.c_str());
 	if (is_empty(csv))
 		throw std::range_error("Empty csv File");
-	while (std::getline(csv, line))
-	{
-		if (line[0] == '#' || line.empty() || line == "date,exchange_rate")
-			continue;
-		std::string value;
-		std::string date;
-		std::istringstream	tmp_year(line);
-		if (tmp_year.fail() || tmp_year.eof())
-			throw std::range_error("Corrupted csv file");
-		std::getline(tmp_year, date, ',');
-		tmp_year >> value;
-		if (check_date(date) == __FAILURE)
-			throw std::range_error("Bad date detected in csv file");
-		int res = check_value(value);
-		if (res == 4)
-			throw std::range_error("Bad value detected in csv file");
-		else if (res == 2)
-			throw std::range_error("Invalid number detected in csv file");
-		else if (res == 3)
-			throw std::range_error("Invalid number detected in csv file");
-	}
-	csv.close();
 }
 
 BitcoinExchange::BitcoinExchange(std::string csv_file) : __csv_file(csv_file.c_str()), __btree()
@@ -108,7 +76,7 @@ float	BitcoinExchange::getBtcValue(std::string &date)
 	{
 		std::map<std::string, float>::const_iterator lower = __btree.lower_bound(date);
 		if (lower == __btree.begin())
-			throw ("Btc didn't exist at this date");
+			throw std::range_error ("0 but btc didn't exist yet a this date");
 		else
 			--lower;
 		return (lower->second);

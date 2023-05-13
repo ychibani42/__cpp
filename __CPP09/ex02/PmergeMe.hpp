@@ -60,7 +60,8 @@ class PmergeMe
 		double	__vector_t;
 		std::vector<std::pair<int, int> > vec_pairs;
 		std::deque<std::pair<int, int> > deq_pairs;
-		std::vector<int>	__sorted_array;
+		std::vector<int>	__sorted_vector;
+		std::deque<int>	__sorted_deque;
 		bool	__is_odd;
 		int		__odd_value;
 };

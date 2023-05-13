@@ -31,6 +31,8 @@
 #include <limits>
 #include <map>
 #include <cstdlib>
+#include <ctime>
+#include <bits/stdc++.h>
 
 class BitcoinExchange
 {
@@ -39,16 +41,15 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange(std::string csv_file);
 		BitcoinExchange(const BitcoinExchange &);
+		void __parse_csv(std::string csv_file);
 		std::map<std::string , float> getTree() const;
 		BitcoinExchange &operator=(const BitcoinExchange &rh);
 		float getBtcValue(std::string &date);
 	private :
 		std::ifstream __csv_file;
-		void	__parse_csv(std::string csv_file);
 		std::map<std::string , float> __btree;
 };
 
-int	check_date(std::string date);
-int	check_value(std::string value);
 bool is_empty(std::ifstream& pFile);
+
 #endif
